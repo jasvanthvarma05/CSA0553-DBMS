@@ -1,0 +1,158 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| education          |
+| mysql              |
+| performance_schema |
+| student            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create database sse;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use sse;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table student(name varchar(15),RegNo int(3),gender varchar(1));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(15) | YES  |     | NULL    |       |
+| RegNo  | int(3)      | YES  |     | NULL    |       |
+| gender | varchar(1)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table student add DOB int(48);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add MobileNo int(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add city varchar(15);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(15) | YES  |     | NULL    |       |
+| RegNo    | int(3)      | YES  |     | NULL    |       |
+| gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | int(48)     | YES  |     | NULL    |       |
+| MobileNo | int(10)     | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> create table faculty(name varchar(15),number int(4),gender varchar(1));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> alter table faculty add DOB int(6);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table faculty add DOJ int(5);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table faculty add MobileNo int(10);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(15) | YES  |     | NULL    |       |
+| number   | int(4)      | YES  |     | NULL    |       |
+| gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | int(6)      | YES  |     | NULL    |       |
+| DOJ      | int(5)      | YES  |     | NULL    |       |
+| MobileNo | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> create table department(DeptNo varchar(4),name varchar(15));
+Query OK, 0 rows affected (0.07 sec)
+mysql> alter table department add DeptHead varchar(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| DeptNo   | varchar(4)  | YES  |     | NULL    |       |
+| name     | varchar(15) | YES  |     | NULL    |       |
+| DeptHead | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table course(number varchar(3),Coursedesc varchar(14), Coursetype varchar(1));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> alter table course add semno varchar(1);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table course add hallno varchar(4);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table course add facultyidentifier varchar(4);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| number            | varchar(3)  | YES  |     | NULL    |       |
+| Coursedesc        | varchar(14) | YES  |     | NULL    |       |
+| Coursetype        | varchar(1)  | YES  |     | NULL    |       |
+| semno             | varchar(1)  | YES  |     | NULL    |       |
+| hallno            | varchar(4)  | YES  |     | NULL    |       |
+| facultyidentifier | varchar(4)  | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> alter table faculty add deptno varchar(4);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(15) | YES  |     | NULL    |       |
+| number   | int(4)      | YES  |     | NULL    |       |
+| gender   | varchar(1)  | YES  |     | NULL    |       |
+| DOB      | int(6)      | YES  |     | NULL    |       |
+| DOJ      | int(5)      | YES  |     | NULL    |       |
+| MobileNo | int(10)     | YES  |     | NULL    |       |
+| deptno   | varchar(4)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> drop table department;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> drop table course;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> drop table faculty;
+Query OK, 0 rows affected (0.08 sec)
