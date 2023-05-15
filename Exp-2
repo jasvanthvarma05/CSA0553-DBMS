@@ -1,0 +1,125 @@
+ show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| education          |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| su                 |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> create database bunny;
+Query OK, 1 row affected (0.06 sec)
+mysql> use bunny;
+Database changed
+mysql> create table bunny(name varchar(10),id int(10),age int(10));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | YES  |     | NULL    |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> insert into bunny values('bunny',17,18),('hii',29,29);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from bunny;
++-------+------+------+
+| name  | id   | age  |
++-------+------+------+
+| bunny |   17 |   18 |
+| hii   |   29 |   29 |
++-------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table bunny add primary key(name);
+Query OK, 2 rows affected (0.12 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | NO   | PRI |         |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
+
+mysql> create table power(name varchar(10), attributes varchar(10), powers varchar(10));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc power;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| name       | varchar(10) | YES  |     | NULL    |       |
+| attributes | varchar(10) | YES  |     | NULL    |       |
+| powers     | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
+
+mysql> alter table power add foreign key(name) references bunny(name);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc power;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| name       | varchar(10) | YES  | MUL | NULL    |       |
+| attributes | varchar(10) | YES  |     | NULL    |       |
+| powers     | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table bunny add unique(name);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | NO   | PRI |         |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.06 sec)
+
+mysql> alter table bunny add unique(age);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | NO   | PRI |         |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
+
+mysql> alter table bunny add check(age>56);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | NO   | PRI |         |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
