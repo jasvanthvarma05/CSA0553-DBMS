@@ -1,0 +1,125 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| bunny              |
+| education          |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| su                 |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use bunny;
+Database changed
+mysql> select*from bunny;
++-------+------+------+-------+---------+
+| name  | id   | age  | place | studies |
++-------+------+------+-------+---------+
+| bunny |   17 |   18 | kou   | cse     |
+| byee  |    1 |    3 | tpt   | ec      |
+| heloo |    3 |    5 | hyd   | mech    |
++-------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from bunny where age between 5 and 10;
++-------+------+------+-------+---------+
+| name  | id   | age  | place | studies |
++-------+------+------+-------+---------+
+| heloo |    3 |    5 | hyd   | mech    |
++-------+------+------+-------+---------+
+1 row in set (0.02 sec)
+
+mysql> select*from bunny where id=1;
++------+------+------+-------+---------+
+| name | id   | age  | place | studies |
++------+------+------+-------+---------+
+| byee |    1 |    3 | tpt   | ec      |
++------+------+------+-------+---------+
+1 row in set (0.01 sec)
+
+mysql> select sum(age) from bunny where id=1,3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3' at line 1
+mysql> select sum(age) from bunny where id=1,3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| bunny              |
+| education          |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| su                 |
++--------------------+
+8 rows in set (0.02 sec)
+
+mysql> use education;
+Database changed
+mysql> create table student(name varchar(10),reg_no int(10),marks int(10),dept varchar(10),section varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(10) | YES  |     | NULL    |       |
+| reg_no  | int(10)     | YES  |     | NULL    |       |
+| marks   | int(10)     | YES  |     | NULL    |       |
+| dept    | varchar(10) | YES  |     | NULL    |       |
+| section | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student values('king',1999111,88,'ECE','A'),('Queen',1999222,65,'CSE','B'),('Prince',1999333,76,'BME','C'),('Warrior',1999444,100,'IT','A'),('Minister',1999555,89,'EEE','D');
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from student;
++----------+---------+-------+------+---------+
+| name     | reg_no  | marks | dept | section |
++----------+---------+-------+------+---------+
+| king     | 1999111 |    88 | ECE  | A       |
+| Queen    | 1999222 |    65 | CSE  | B       |
+| Prince   | 1999333 |    76 | BME  | C       |
+| Warrior  | 1999444 |   100 | IT   | A       |
+| Minister | 1999555 |    89 | EEE  | D       |
++----------+---------+-------+------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student group by section;
++---------+----------+------+-------+---------+
+| regno   | name     | dept | marks | section |
++---------+----------+------+-------+---------+
+| 1999111 | King     | ECE  |    88 | A       |
+| 1999222 | Queen    | CSE  |    65 | B       |
+| 1999333 | Prince   | BME  |    76 | C       |
+| 1999555 | Minister | EEE  |    89 | D       |
++---------+----------+------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student having marks>85;
++---------+----------+------+-------+---------+
+| regno   | name     | dept | marks | section |
++---------+----------+------+-------+---------+
+| 1999111 | King     | ECE  |    88 | A       |
+| 1999444 | Warrior  | IT   |   100 | A       |
+| 1999555 | Minister | EEE  |    89 | D       |
++---------+----------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student having marks<85;
++---------+--------+------+-------+---------+
+| regno   | name   | dept | marks | section |
++---------+--------+------+-------+---------+
+| 1999222 | Queen  | CSE  |    65 | B       |
+| 1999333 | Prince | BME  |    76 | C       |
++---------+--------+------+-------+---------+
+2 rows in set (0.00 sec)
