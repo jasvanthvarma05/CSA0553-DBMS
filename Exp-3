@@ -1,0 +1,74 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| bunny              |
+| education          |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| su                 |
++--------------------+
+8 rows in set (0.00 sec)
+mysql> use bunny;
+Database changed
+mysql> desc bunny;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(10) | NO   | PRI |         |       |
+| id    | int(10)     | YES  |     | NULL    |       |
+| age   | int(10)     | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
+mysql> select*from bunny;
++-------+------+------+
+| name  | id   | age  |
++-------+------+------+
+| bunny |   17 |   18 |
+| hii   |   29 |   29 |
++-------+------+------+
+2 rows in set (0.00 sec)
+mysql> insert into bunny values('byee',1,3),('heloo',3,8);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+mysql> select*from bunny;
++-------+------+------+
+| name  | id   | age  |
++-------+------+------+
+| bunny |   17 |   18 |
+| byee  |    1 |    3 |
+| heloo |    3 |    8 |
+| hii   |   29 |   29 |
++-------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> update bunny set age=5 where age=8;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from bunny;
++-------+------+------+
+| name  | id   | age  |
++-------+------+------+
+| bunny |   17 |   18 |
+| byee  |    1 |    3 |
+| heloo |    3 |    5 |
+| hii   |   29 |   29 |
++-------+------+------+
+4 rows in set (0.00 sec)
+mysql> delete from bunny where name='hii';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from bunny;
++-------+------+------+
+| name  | id   | age  |
++-------+------+------+
+| bunny |   17 |   18 |
+| byee  |    1 |    3 |
+| heloo |    3 |    5 |
++-------+------+------+
+3 rows in set (0.00 sec)
